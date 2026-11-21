@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#241c48">
+<title>Jumish AI Kids Studio</title>
+<style>
+:root{--ink:#241c48;--muted:#706b83;--purple:#6554d9;--pink:#ff7aa8;--yellow:#ffd36b;--bg:#f7f6fc;--card:#fff;--line:#e9e6f2;--green:#287d60}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+button,input,textarea,select{font:inherit}.shell{max-width:1120px;margin:auto;padding:20px}
+header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0 24px}
+.brand{display:flex;align-items:center;gap:11px;font-weight:850;letter-spacing:.02em}.logo{width:42px;height:42px;border-radius:14px;background:linear-gradient(135deg,#7768ec,#ff8ab3);display:grid;place-items:center;color:#fff;font-size:22px;box-shadow:0 7px 18px #6554d933}
+.pill{font-size:12px;background:#eeebff;color:#5747c3;border-radius:99px;padding:7px 11px;font-weight:750}
+.hero{background:linear-gradient(120deg,#27204f,#4d3b91 65%,#795ed2);color:#fff;border-radius:25px;padding:28px;position:relative;overflow:hidden}
+.hero:after{content:"✦";position:absolute;right:8%;top:-28px;font-size:170px;color:#ffffff12}
+.eyebrow{font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:#d9d3ff;font-weight:800}
+h1{font-size:clamp(29px,5vw,48px);line-height:1.08;margin:10px 0 12px;max-width:650px}
+.hero p{color:#e5e0ff;max-width:620px;line-height:1.6;margin:0}
+.hero-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}.hero-tags span{border:1px solid #ffffff38;background:#ffffff12;padding:7px 10px;border-radius:99px;font-size:12px}
+.layout{display:grid;grid-template-columns:1.2fr .8fr;gap:18px;margin-top:20px}.panel{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:0 8px 30px #33256c08}
+.panel h2{font-size:19px;margin:0 0 5px}.sub{font-size:13px;color:var(--muted);margin:0 0 20px;line-height:1.5}
+.field{margin:17px 0}.field label,.label{display:block;font-size:13px;font-weight:750;margin-bottom:8px}
+textarea,input,select{width:100%;border:1px solid #ded9eb;background:#fff;border-radius:12px;padding:12px 13px;color:var(--ink);outline:none}
+textarea{min-height:108px;resize:vertical;line-height:1.5}textarea:focus,input:focus,select:focus{border-color:var(--purple);box-shadow:0 0 0 3px #6554d91c}
+.hint{font-size:11px;color:var(--muted);margin-top:6px}
+.tiles{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.tile{border:1px solid var(--line);background:#fff;border-radius:14px;padding:13px;text-align:left;cursor:pointer;transition:.15s;color:var(--ink)}
+.tile:hover{border-color:#b9b0f0;transform:translateY(-1px)}.tile.active{border:2px solid var(--purple);background:#f3f1ff;padding:12px}
+.tile .emoji{font-size:23px;display:block;margin-bottom:7px}.tile strong{font-size:13px;display:block}.tile small{font-size:11px;color:var(--muted)}
+.methods{display:grid;grid-template-columns:1fr 1fr;gap:9px}.method{border:1px solid var(--line);border-radius:13px;padding:12px;cursor:pointer;background:#fff;text-align:left;color:var(--ink)}.method.active{border:2px solid var(--purple);background:#f3f1ff;padding:11px}.method b{display:block;font-size:13px}.method span{font-size:11px;color:var(--muted)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.primary{width:100%;border:0;border-radius:13px;padding:14px 18px;background:linear-gradient(100deg,#6655d9,#8a65e8);color:white;font-weight:800;cursor:pointer;box-shadow:0 8px 18px #6554d933}.primary:hover{filter:brightness(1.04)}
+.secondary{border:1px solid var(--line);background:white;border-radius:11px;padding:10px 13px;color:var(--ink);font-weight:700;cursor:pointer}
+.preview{background:linear-gradient(145deg,#f0edff,#fff0f5);border-radius:16px;min-height:205px;display:grid;place-items:center;text-align:center;padding:22px}
+.preview .scene{font-size:54px}.preview strong{display:block;margin-top:9px}.preview p{font-size:12px;color:var(--muted);max-width:240px;line-height:1.5;margin:6px auto 0}
+.steps{display:grid;gap:13px;margin-top:18px}.step{display:flex;gap:11px;align-items:flex-start}.num{flex:none;width:27px;height:27px;border-radius:9px;background:#eeebff;color:#5c4bc9;display:grid;place-items:center;font-size:12px;font-weight:850}.step b{font-size:13px;display:block}.step small{font-size:11px;color:var(--muted);line-height:1.5;display:block;margin-top:3px}
+.notice{background:#fff8e8;border:1px solid #f4e2b8;border-radius:13px;padding:12px;font-size:12px;color:#71571c;line-height:1.5;margin-top:16px}
+footer{text-align:center;color:var(--muted);font-size:11px;padding:25px 8px}
+.toast{display:none;margin-top:12px;padding:11px;border-radius:11px;background:#edf8f2;color:var(--green);font-size:12px;line-height:1.5}
+@media(max-width:760px){.shell{padding:14px}.layout{grid-template-columns:1fr}.hero{padding:23px 20px}.panel{padding:18px}header{padding-bottom:16px}.pill{font-size:10px}}
+@media(max-width:390px){.two{grid-template-columns:1fr}.brand{font-size:13px}}
+</style>
+</head>
+<body>
+<div class="shell">
+<header>
+  <div class="brand"><div class="logo">✦</div><span>JUMISH AI KIDS STUDIO</span></div>
+  <span class="pill">YOUR CREATIVE WORKSPACE</span>
+</header>
+<section class="hero">
+  <div class="eyebrow">A little studio for big imagination</div>
+  <h1>Create. Animate. Educate.</h1>
+  <p>Plan colourful 3D cartoon stories, nursery rhymes and learning adventures for children. Your ideas are the beginning of every great video.</p>
+  <div class="hero-tags"><span>📖 Bible stories</span><span>🎵 Nursery rhymes</span><span>🎒 Learning videos</span><span>🎬 Cartoon adventures</span></div>
+</section>
+<div class="layout">
+<main class="panel">
+  <h2>Start a new video</h2>
+  <p class="sub">Tell the studio what you want to create. This first version helps you prepare a video project; AI generation will be connected in later stages.</p>
+  <div class="field">
+    <label for="idea">1. Describe your video idea</label>
+    <textarea id="idea" placeholder="Example: Tell the story of Noah's Ark in a warm, exciting way for children aged 4–7."></textarea>
+    <div class="hint">Tip: Include the main character, what happens and what children should learn.</div>
+  </div>
+  <div class="field">
+    <span class="label">2. Choose a video category</span>
+    <div class="tiles" id="categories">
+      <button class="tile active" data-category="Bible story"><span class="emoji">📖</span><strong>Bible story</strong><small>Faith-filled adventures</small></button>
+      <button class="tile" data-category="Nursery rhyme"><span class="emoji">🎵</span><strong>Nursery rhyme</strong><small>Songs and movement</small></button>
+      <button class="tile" data-category="Education"><span class="emoji">🎒</span><strong>Education</strong><small>Learn through play</small></button>
+      <button class="tile" data-category="Cartoon story"><span class="emoji">🦁</span><strong>Cartoon story</strong><small>Original adventures</small></button>
+    </div>
+  </div>
+  <div class="field">
+    <span class="label">3. Choose your creation method</span>
+    <div class="methods">
+      <button class="method active" data-method="One-prompt workflow"><b>⚡ One prompt</b><span>Plan a complete video from one idea</span></button>
+      <button class="method" data-method="Images-to-video workflow"><b>🖼️ Images to video</b><span>Build and animate scene by scene</span></button>
+    </div>
+  </div>
+  <div class="field two">
+    <div><label for="age">4. Target age</label><select id="age"><option>2–4 years</option><option selected>4–7 years</option><option>8–12 years</option></select></div>
+    <div><label for="duration">Video length</label><select id="duration"><option>30 seconds</option><option>1 minute</option><option selected>3 minutes</option><option>5 minutes</option><option>10 minutes</option></select></div>
+  </div>
+  <div class="field">
+    <label for="format">5. Video format</label>
+    <select id="format"><option value="16:9 landscape">16:9 — YouTube landscape</option><option value="9:16 vertical">9:16 — YouTube Shorts / TikTok</option><option value="1:1 square">1:1 — Square</option></select>
+  </div>
+  <button class="primary" id="create">✨ Prepare my video project</button>
+  <div class="toast" id="toast" role="status"></div>
+</main>
+<aside>
+  <section class="panel">
+    <h2>Studio preview</h2><p class="sub">Your creative direction at a glance.</p>
+    <div class="preview"><div><div class="scene">🎬🌈🧸</div><strong id="previewTitle">Your next big story starts here</strong><p id="previewText">Choose a category and describe your idea to prepare your first project.</p></div></div>
+    <div class="steps">
+      <div class="step"><div class="num">1</div><div><b>Plan your story</b><small>Turn your idea into a child-friendly script and scenes.</small></div></div>
+      <div class="step"><div class="num">2</div><div><b>Create your characters</b><small>Design memorable characters with consistent appearances.</small></div></div>
+      <div class="step"><div class="num">3</div><div><b>Bring scenes to life</b><small>Make images, animation, narration and music.</small></div></div>
+      <div class="step"><div class="num">4</div><div><b>Export your video</b><small>Assemble scenes into a finished MP4.</small></div></div>
+    </div>
+    <div class="notice"><b>Development note:</b> This is the first website interface. It does not generate AI images, voices or videos yet. We will add those capabilities in later stages using free or open-source options where practical.</div>
+  </section>
+  <section class="panel" style="margin-top:16px">
+    <h2>My project</h2><p class="sub">A simple place to begin organising your ideas.</p>
+    <button class="secondary" id="save">Save project details on this device</button>
+    <button class="secondary" id="load" style="margin-left:5px">Load saved details</button>
+    <div class="hint">Saved locally in this browser on this device.</div>
+  </section>
+</aside>
+</div>
+<footer>Jumish AI Kids Studio · Creative tools for children's stories and learning</footer>
+</div>
+<script>
+let category="Bible story",method="One-prompt workflow";
+document.querySelectorAll(".tile").forEach(b=>b.addEventListener("click",()=>{document.querySelectorAll(".tile").forEach(x=>x.classList.remove("active"));b.classList.add("active");category=b.dataset.category;updatePreview()}));
+document.querySelectorAll(".method").forEach(b=>b.addEventListener("click",()=>{document.querySelectorAll(".method").forEach(x=>x.classList.remove("active"));b.classList.add("active");method=b.dataset.method;updatePreview()}));
+function project(){return {idea:document.getElementById("idea").value,category,method,age:document.getElementById("age").value,duration:document.getElementById("duration").value,format:document.getElementById("format").value}}
+function updatePreview(){let p=project();document.getElementById("previewTitle").textContent=p.category+" project";document.getElementById("previewText").textContent=p.idea.trim()||"Add your idea to see your project summary here."}
+document.getElementById("idea").addEventListener("input",updatePreview);
+document.getElementById("create").addEventListener("click",()=>{let p=project();let box=document.getElementById("toast");if(!p.idea.trim()){box.style.display="block";box.textContent="Please describe your video idea first. Then prepare your project.";document.getElementById("idea").focus();return}box.style.display="block";box.textContent="Project brief prepared! Category: "+p.category+". Method: "+p.method+". Age: "+p.age+". Length: "+p.duration+". Format: "+p.format+". AI generation will be added in the next development stages.";updatePreview()});
+document.getElementById("save").addEventListener("click",()=>{localStorage.setItem("jumishProject",JSON.stringify(project()));let box=document.getElementById("toast");box.style.display="block";box.textContent="Your project details have been saved in this browser on this device."});
+document.getElementById("load").addEventListener("click",()=>{let raw=localStorage.getItem("jumishProject");let box=document.getElementById("toast");box.style.display="block";if(!raw){box.textContent="No saved project was found on this device yet.";return}let p=JSON.parse(raw);document.getElementById("idea").value=p.idea;document.getElementById("age").value=p.age;document.getElementById("duration").value=p.duration;document.getElementById("format").value=p.format;category=p.category;method=p.method;document.querySelectorAll(".tile").forEach(x=>x.classList.toggle("active",x.dataset.category===category));document.querySelectorAll(".method").forEach(x=>x.classList.toggle("active",x.dataset.method===method));updatePreview();box.textContent="Your saved project details have been loaded."});
+</script>
+</body></html>
